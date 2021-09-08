@@ -20,10 +20,16 @@ TEMP_DIR = Path(THIS_DIR, 'temp_data')
 
 DB_SIZE = 1 * 1024 * 1024 * 1024
 
-
-
 def find_date_range(dirpath: Optional[Path] = None) -> str:
-    """find the date range from the calendar.txt gtfs data"""
+    """
+    find the date range from the calendar.txt gtfs data
+
+    :param dirpath: [description], defaults to None
+    :type dirpath: Optional[Path], optional
+    :return: the range of the gtfs data YYYYMMDD_YYYYMMDD
+    :rtype: str
+    """
+
 
     if not dirpath:
         dirpath = Path(TEMP_DIR)
