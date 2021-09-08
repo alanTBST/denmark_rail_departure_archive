@@ -39,22 +39,39 @@ def find_date_range(dirpath: Optional[Path] = None) -> str:
     return f'{min(dates)}_{max(dates)}'
 
 
-def load_config():
-    fp = Path(THIS_DIR, 'config.json')
+def load_config() -> Dict[str, str]:
+    """load the configuration file containing the relevant urls
+
+    :return: the config dictionary
+    :rtype: Dict[str, str]
+    """
+    fp = THIS_DIR / 'config.json'
 
     with open(fp, 'r') as f:
         return json.load(f)
 
-def load_stop_location_url():
+def load_stop_location_url() -> str:
+    """Load the stop locations url from the
+    config json file
 
-    fp = Path(THIS_DIR, 'config.json')
+    :return: [description]
+    :rtype: [type]
+    """
+
+    fp = THIS_DIR / 'config.json'
 
     with open(fp, 'r') as f:
         return json.load(f)['location_url']
 
-def load_bus_maps():
+def load_bus_maps() -> Dict[int, int]:
+    """load the bus to station maps json file
 
-    fp = Path(THIS_DIR, 'bus_to_station_maps.json')
+    :return: [description]
+    :rtype: [type]
+    """
+
+    fp = THIS_DIR / 'bus_to_station_maps.json'
+
     with open(fp, 'r') as f:
         bus_map = json.load(f)
         return {int(k): v for k, v in bus_map.items()}
@@ -103,9 +120,10 @@ class ArchiveStore:
             return json.load(f)
 
     @staticmethod
-    def load_trip_route(dates: Optional[str] = None, ) -> Dict[int, str]:
+    def load_trip_route(dates: Optional[str] = None) -> Dict[int, str]:
         """
         Load the mapping of trip_id -> route_id
+
         :param dates: , defaults to None
         :type dates: Optional[str], optional
         :return: dictionary of trip_ids to route_ids
@@ -176,7 +194,13 @@ class ArchiveStore:
             dates: Optional[str] = None,
             **kwargs
             ) -> Dict[int, Dict[int, Dict[str, Union[str, int]]]]:
+        """Load the stop_times for a given date
 
+        :param dates: [description], defaults to None
+        :type dates: Optional[str], optional
+        :return: [description]
+        :rtype: Dict[int, Dict[int, Dict[str, Union[str, int]]]]
+        """
         pickup_type = kwargs.pop('pickup_type', None)
 
         if dates is None:
