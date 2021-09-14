@@ -22,15 +22,22 @@ THIS_DIR = Path(__file__).parent
 ARCHIVE_DIR = Path(THIS_DIR, 'archive')
 TEMP_DIR = Path(THIS_DIR, 'temp_data')
 
-def read_routes(filepath: Path) -> T_ROUTE:
+def read_routes(routes_filepath: Path) -> T_ROUTE:
+    """Load the routes.txt file and
 
-    df = pd.read_csv(filepath).fillna('')
+    :param routes_filepath: [description]
+    :type routes_filepath: Path
+    :return: [description]
+    :rtype: T_ROUTE
+    """
+    df = pd.read_csv(routes_filepath).fillna('')
 
     return df.set_index('route_id').T.to_dict()
 
 def write_routes_to_archive(
         route_dict: T_ROUTE
         ) -> None:
+
     archive_loc = Path(ARCHIVE_DIR, 'routes.json')
 
     with open(archive_loc, 'w', encoding='iso-8859-1') as f:
