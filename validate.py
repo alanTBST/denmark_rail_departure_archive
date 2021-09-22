@@ -20,6 +20,7 @@ REQUIRED_DEPARTURE_FILES = {
     'agency.txt',
     'calendar.txt',
     'routes.txt',
+    'calendar_dates.txt',
     'stops.txt',
     'stop_times.txt',
     'trips.txt'
@@ -28,7 +29,6 @@ REQUIRED_DEPARTURE_FILES = {
 
 ADDITIONAL_FILES = {
     'attributions.txt',
-    'calendar_dates.txt',
     'shapes.txt',
     'transfers.txt',
     'frequencies.txt',
